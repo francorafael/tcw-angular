@@ -6,7 +6,7 @@ import { TcwApiConfigService } from './tcw-api.config';
 
 
 /**
- * PosApiService
+ * TwcApiService
  * 
  * Serviço de consumo da pos-api
  * @author Rafael Franco <rafael@joyaweb.com.br>

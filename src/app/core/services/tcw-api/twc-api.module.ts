@@ -4,7 +4,7 @@ import { TcwApiConfigService } from "./tcw-api.config";
 
 /**
  * Módulo TCW API
- * TwcApiModule
+ * TwcApiServiceModule
  * @author Rafael Franco <rafael.franco@bevicred.com.br>
  */
 @NgModule({
@@ -16,4 +16,4 @@ import { TcwApiConfigService } from "./tcw-api.config";
         
     ]
 })
-export class TwcApiModule { }
+export class TwcApiServiceModule { }
