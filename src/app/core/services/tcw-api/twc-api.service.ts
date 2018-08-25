@@ -7,6 +7,7 @@ import { TcwApiConfigService } from './tcw-api.config';
 
 /**
  * TwcApiService
+ // tslint:disable-next-line:no-trailing-whitespace
  * 
  * Serviço de consumo da pos-api
  * @author Rafael Franco <rafael@joyaweb.com.br>

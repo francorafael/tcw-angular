@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 const config = 
 {
     'localhost' : {
-        address: 'http://192.168.88.101'
+        address: 'https://twc-api.herokuapp.com/api/posts/'
     }
 };
 
