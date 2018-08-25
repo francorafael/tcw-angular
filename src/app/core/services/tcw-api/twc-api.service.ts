@@ -12,8 +12,7 @@ import { TcwApiConfigService } from './tcw-api.config';
  * @author Rafael Franco <rafael@joyaweb.com.br>
  */
 @Injectable()
-export class TwcApiService 
-{
+export class TwcApiService {
     /**
      * httpClient
      * 
@@ -34,8 +33,7 @@ export class TwcApiService
      * @param httpClient 
      * @param tcwApiConfigService 
      */
-    public constructor(httpClient: HttpClient, tcwApiConfigService: TcwApiConfigService)
-    {
+    public constructor(httpClient: HttpClient, tcwApiConfigService: TcwApiConfigService) {
         this.httpClient = httpClient;
         this.tcwApiConfigService = tcwApiConfigService;
     }
@@ -43,20 +41,51 @@ export class TwcApiService
     /**
      * getApiAddress
      */
-    public getApiAddress(): string
-    {
+    public getApiAddress(): string {
         return this.tcwApiConfigService.getConfig()[window.location.hostname].address;
     }
-   
+
+    /**
+     * getOptions
+     */
+    public getOptions(): any {
+
+        let options = {};
+
+        options = {
+            headers: {
+                Accept: 'application/json'
+            }
+        };
+
+        return options;
+    }
+
     /**
      * post
      * 
      * @param apiAddress 
      * @param data 
      */
-    public post(apiAddress: string, data: {}): Observable<Object>
-    {
-        return this.httpClient.post(this.getApiAddress() + apiAddress, data);
+    public post(apiAddress: string, data: {}): Observable<Object> {
+        return this.httpClient.post(this.getApiAddress() + apiAddress, data, this.getOptions());
+    }
+
+    /**
+     * put
+     * @param apiAddress 
+     * @param data 
+     */
+    public put(apiAddress: string, data: {}): Observable<Object> {
+        return this.httpClient.put(this.getApiAddress() + apiAddress, data, this.getOptions());
+    }
+
+    /**
+     * delete
+     * @param apiAddress 
+     */
+    public delete(apiAddress: string): Observable<Object> {
+        return this.httpClient.delete(this.getApiAddress() + apiAddress, this.getOptions());
     }
 
     /**
@@ -65,8 +94,9 @@ export class TwcApiService
      * @param apiAddress 
      * @param data 
      */
-    public get(apiAddress: string): Observable<Object>
-    {
-        return this.httpClient.get(this.getApiAddress() + apiAddress);
+    public get(apiAddress: string): Observable<Object> {
+        return this.httpClient.get(this.getApiAddress() + apiAddress, this.getOptions());
     }
+
+    
 }
