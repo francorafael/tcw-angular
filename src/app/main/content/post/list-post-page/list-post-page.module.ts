@@ -6,6 +6,7 @@ import { ListPostPageComponent } from './list-post-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PostServiceModule } from '../../../services/post/post-service.module';
 import { MatTableModule, MatMenuModule, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule } from '@angular/material';
+import { DialogDetailPostModule } from '../../../../components/post/dialog-detail-post/dialog-detail-post.module';
 
 const routes: Routes = [
   { path: '', component: ListPostPageComponent }
@@ -24,7 +25,8 @@ const routes: Routes = [
     MatSnackBarModule,
     RouterModule.forChild(routes),
     NavbarModule,
-    PostServiceModule
+    PostServiceModule,
+    DialogDetailPostModule
   ],
   declarations: [ListPostPageComponent],
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../services/post/post.service';
-import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
+import { DialogDetailPostComponent } from '../../../../components/post/dialog-detail-post/dialog-detail-post.component';
 
 @Component({
   selector: 'app-list-post-page',
@@ -36,11 +37,27 @@ export class ListPostPageComponent implements OnInit {
    */
   private snackBarMessage: MatSnackBar;
 
+  /**
+   * @var dialog
+   */
+  public dialog: MatDialog
+
+  /**
+  * @var dialogDetailPost
+  */
+  public dialogDetailPost: MatDialogRef<DialogDetailPostComponent>;
+
+  /**
+   * @param postService 
+   * @param snackBarMessage 
+   */
   constructor(
     postService: PostService,
-    snackBarMessage: MatSnackBar) {
+    snackBarMessage: MatSnackBar,
+    dialog: MatDialog) {
     this.postService = postService;
     this.snackBarMessage = snackBarMessage
+    this.dialog = dialog;
   }
 
   public ngOnInit(): void {
@@ -121,6 +138,35 @@ export class ListPostPageComponent implements OnInit {
         panelClass: ['bg-danger-snack'],
         duration: 12000,
       });
+    });
+  }
+
+  /**
+   * showDetailPost
+   * @param element 
+   */
+  public showDetailPost(element: any): void {
+
+    // Verifica se o dialog está aberto
+    if (this.dialogDetailPost instanceof MatDialogRef) {
+      this.dialogDetailPost.close();
+    }
+
+    // Exibe o dialog para o usuário
+    this.dialogDetailPost = this.dialog.open(DialogDetailPostComponent, {
+      disableClose: true,
+      panelClass: 'panelClass',
+      width: '650px',
+      data: {
+        title: element.title,
+        content: element.content,
+        created_at: element.created_at
+      }
+    });
+
+    // Escuta a respostado dialog
+    this.dialogDetailPost.afterClosed().subscribe((url: any) => {
+      this.dialogDetailPost.close();
     });
   }
 }
