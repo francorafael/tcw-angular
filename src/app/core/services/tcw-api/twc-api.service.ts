@@ -47,6 +47,12 @@ export class TwcApiService {
     }
 
     /**
+     * Código do usuario para filtrar os dados na API
+     * @var codeUser 
+     */
+    public codeUser: number = 1;
+
+    /**
      * getOptions
      */
     public getOptions(): any {
@@ -64,40 +70,56 @@ export class TwcApiService {
 
     /**
      * post
-     * 
+     * api/posts/store
      * @param apiAddress 
      * @param data 
      */
-    public post(apiAddress: string, data: {}): Observable<Object> {
+    public post(apiAddress: string, data:any): Observable<Object> {
+        data.code = this.codeUser;
         return this.httpClient.post(this.getApiAddress() + apiAddress, data, this.getOptions());
     }
 
     /**
      * put
+     * api/posts/update/ 3 = id do post
      * @param apiAddress 
+     * @param id 
      * @param data 
      */
-    public put(apiAddress: string, data: {}): Observable<Object> {
-        return this.httpClient.put(this.getApiAddress() + apiAddress, data, this.getOptions());
+    public put(apiAddress: string, id: number, data: any): Observable<Object> {
+        data.code = this.codeUser;
+        return this.httpClient.put(this.getApiAddress() + apiAddress + "/" + id, data, this.getOptions());
     }
 
     /**
      * delete
+     * api/posts/destroy/ 3 = id do post
      * @param apiAddress 
+     * @param id 
      */
-    public delete(apiAddress: string): Observable<Object> {
-        return this.httpClient.delete(this.getApiAddress() + apiAddress, this.getOptions());
+    public delete(apiAddress: string, id: number): Observable<Object> {
+        return this.httpClient.delete(this.getApiAddress() + apiAddress + "/" + id, this.getOptions());
     }
 
     /**
      * get
-     * 
+     * api/posts/getAllWithCode/1  = code do user
      * @param apiAddress 
      * @param data 
      */
     public get(apiAddress: string): Observable<Object> {
-        return this.httpClient.get(this.getApiAddress() + apiAddress, this.getOptions());
+        return this.httpClient.get(this.getApiAddress() + apiAddress+"/"+this.codeUser, this.getOptions());
     }
 
-    
+    /**
+     * show
+     * api/posts/showWithCode/1/1 - code user - id do post
+     * @param apiAddress 
+     * @param data 
+     */
+    public show(apiAddress: string,  id: number): Observable<Object> {
+        return this.httpClient.get(this.getApiAddress() + apiAddress+"/"+this.codeUser+"/"+id, this.getOptions());
+    }
+
+
 }
