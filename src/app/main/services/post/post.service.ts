@@ -16,4 +16,9 @@ export class PostService {
     return this.twcApiService.get('posts/getAllWithCode');
   }
 
+  public post(data : any): Observable<Object>
+  {
+    return this.twcApiService.post('posts/store', data);
+  }
+
 }

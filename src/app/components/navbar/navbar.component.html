@@ -5,11 +5,15 @@
       <span>TCW - Angular</span>
     </div>
 
-    <div fxLayout="column" fxFlex="12">
-      <a mat-icon-button>
+    <div fxLayout="column" fxFlex="10">
+      <a mat-icon-button routerLink="/posts/list">
         <mat-icon>description</mat-icon> Meus Posts
       </a>
-
     </div>
+    <div fxLayout="column" fxFlex="10">
+        <a mat-icon-button routerLink="/posts/add">
+          <mat-icon>add</mat-icon> Novo Post
+        </a>
+      </div>
   </mat-toolbar-row>
 </mat-toolbar>

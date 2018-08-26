@@ -58,7 +58,7 @@ export class ListPostPageComponent implements OnInit {
 
         this.loadingDataSource = false;
 
-        if (response.data.error == false) {
+        if (response.data.error == true) {
           this.snackBarMessage.open(response.data.message, 'OK', {
             panelClass: ['bg-danger-snack'],
             duration: 12000,
