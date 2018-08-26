@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container m-t-10">
+  <div fxLayout.xs="column" fxLayout.gt-xs="row">
+    <div fxFlex="100">
+      <h1>Novo Post</h1>
+    </div>
+  </div>
+
+  <div fxLayout.xs="column" fxLayout.gt-xs="row" [formGroup]="formCadPost">
+    <div fxFlex="100">
+      <mat-form-field class="full-width m-t-10">
+        <input matInput placeholder="Título do Post*" formControlName="title" />
+        <mat-hint>Título do Post</mat-hint>
+        <mat-error *ngIf="formCadPost.controls['title'].hasError('required')">
+          Campo Obrigatório
+        </mat-error>
+        <mat-error *ngIf="formCadPost.controls['title'].hasError('minlength')">
+          Deve conter pelo menos 3 caracteres.
+        </mat-error>
+        <mat-error *ngIf="formCadPost.controls['title'].hasError('maxlength')">
+          Deve conter no máximo 255 caracteres.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100">
+      <mat-form-field class="full-width m-t-10">
+        <textarea matInput placeholder="Conteúdo do Post*" formControlName="content"></textarea>
+        <mat-hint>Conteúdo do Post</mat-hint>
+        <mat-error *ngIf="formCadPost.controls['content'].hasError('required')">
+          Campo Obrigatório
+        </mat-error>
+        <mat-error *ngIf="formCadPost.controls['content'].hasError('minlength')">
+          Deve conter pelo menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100">
+      <button mat-raised-button mat-icon color="primary" class="m-t-10" (click)="save()" [disabled]="formCadPost.pristine || formCadPost.invalid">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+    </div>
+
+  </div>
+</div>
