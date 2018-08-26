@@ -43,12 +43,12 @@ export class ListPostPageComponent implements OnInit {
     this.snackBarMessage = snackBarMessage
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.displayedColumnsTable = ['id', 'title', 'date', 'action'];
     this.getPosts();
   }
 
-  public getPosts():void {
+  public getPosts(): void {
 
     this.loadingDataSource = true;
 
@@ -81,6 +81,43 @@ export class ListPostPageComponent implements OnInit {
       this.loadingDataSource = false;
       this.dataSourceTable = null;
       this.snackBarMessage.open("Erro ao carregar dados.", 'OK', {
+        panelClass: ['bg-danger-snack'],
+        duration: 12000,
+      });
+    });
+  }
+
+  public delete(id: number): void {
+
+    this.loadingDataSource = true;
+
+    this.postService.delete(id).subscribe((response: any) => {
+
+      if (typeof response !== 'undefined' && typeof response === 'object') {
+
+        if (response.error == true) {
+          this.snackBarMessage.open(response.data.message, 'OK', {
+            panelClass: ['bg-danger-snack'],
+            duration: 12000,
+          });
+
+          this.loadingDataSource = false;
+        } else {
+          this.snackBarMessage.open("Post excluído com sucesso!", 'OK', {
+            duration: 6000,
+          });
+          this.getPosts();
+        }
+      } else {
+        this.loadingDataSource = false;
+        this.snackBarMessage.open("Erro ao excluir post.", 'OK', {
+          panelClass: ['bg-danger-snack'],
+          duration: 12000,
+        });
+      }
+    }, (error: any) => {
+      this.loadingDataSource = false;
+      this.snackBarMessage.open("Erro ao excluir post.", 'OK', {
         panelClass: ['bg-danger-snack'],
         duration: 12000,
       });

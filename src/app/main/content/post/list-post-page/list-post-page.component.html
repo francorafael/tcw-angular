@@ -47,6 +47,10 @@
                                 <mat-icon>edit</mat-icon>
                                 <span>Editar</span>
                             </button>
+                            <button mat-menu-item (click)="delete(element.id)">
+                                <mat-icon>delete</mat-icon>
+                                <span>Excluir</span>
+                            </button>
                         </mat-menu>
                     </mat-cell>
                 </ng-container>
