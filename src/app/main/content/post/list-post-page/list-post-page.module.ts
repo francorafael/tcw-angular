@@ -14,6 +14,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NavbarModule
   ],
-  declarations: []
+  declarations: [ListPostPageComponent]
 })
 export class ListPostPageModule { }
