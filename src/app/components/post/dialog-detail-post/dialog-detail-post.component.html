@@ -1,0 +1,28 @@
+<div id="dialog-detail-post">
+  <!-- Título do dialog -->
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="height: auto;">
+    <div fxLayout.xs="column" fxLayout.gt-xs="row">
+      <div fxFlex="90">
+        <span class="title dialog-title" style="line-height: 45px;">
+          {{ data.title }}
+        </span> <br>
+        <span style="line-height: 45px;" style="font-size:12px;">
+            Cadastrado em: {{ data.created_at | date:'short' }}
+          </span> <br>
+      </div>
+      <div fxFlex="10" style="text-align:right;">
+        <button mat-button class="mat-icon-button p-t-10" (click)="dialogRef.close()" aria-label="Close dialog" tabindex="-1">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content>
+    <div fxLayout.xs="column" fxLayout.gt-xs="row"  style="padding:20px;">
+      <div fxFlex="100">
+        {{ data.content }}
+      </div>
+    </div>
+  </div>
+</div>
