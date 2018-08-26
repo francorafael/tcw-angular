@@ -21,4 +21,9 @@ export class PostService {
     return this.twcApiService.post('posts/store', data);
   }
 
+  public delete(id:number): Observable<Object>
+  {
+    return this.twcApiService.delete('posts/destroy', id);
+  }
+
 }
