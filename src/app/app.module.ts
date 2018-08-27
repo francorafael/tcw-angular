@@ -13,8 +13,7 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localePt);
 
 const routes: Routes = [
-  { path: '', redirectTo: '/posts/list', pathMatch: 'full' },
-  { path: 'posts', loadChildren:'app/main/content/post/post.module#PostModule' },
+
 ];
 
 @NgModule({
