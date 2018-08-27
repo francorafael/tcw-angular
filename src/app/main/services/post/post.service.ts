@@ -16,9 +16,19 @@ export class PostService {
     return this.twcApiService.get('posts/getAllWithCode');
   }
 
+  public show(id:number): Observable<Object>
+  {
+    return this.twcApiService.show('posts/showWithCode', id);
+  }
+
   public post(data : any): Observable<Object>
   {
     return this.twcApiService.post('posts/store', data);
+  }
+
+  public update(data : any, id:number): Observable<Object>
+  {
+    return this.twcApiService.put('posts/update', id, data);
   }
 
   public delete(id:number): Observable<Object>
